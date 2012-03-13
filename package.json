@@ -1,0 +1,10 @@
+{
+	"name": "node-php-hashring",
+	"description": "hashring similar to that being used in PHP4/memcache",
+	"author": "Sandosh Vasudevan <sandosh@gmail.com>",
+	"version": "0.0.1",
+	"repository": {
+    	"type": "git",
+    	"url": "https://github.com/isaacs/npm"
+  	}
+}
