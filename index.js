@@ -1,1 +1,1 @@
-require('./hashring');
+module.exports = require('./hashring');
