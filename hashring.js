@@ -1,6 +1,5 @@
 var _ = require('underscore')._;
 function HashRing(servers, algorithm) {
-	console.log(servers);
 	this.weights = {};
 	this.points = {};
 	this.order = [];
