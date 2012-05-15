@@ -1,4 +1,3 @@
-var _ = require('underscore')._;
 function HashRing(servers, algorithm) {
 	this.weights = {};
 	this.points = {};
@@ -17,15 +16,16 @@ HashRing.prototype.get_hash = function(key) {
 
 
 HashRing.prototype.targets = function() {
-	keys = _.keys(this.weights);
+	keys = Object.keys(this.weights);
 	keys.sort();
 	return keys;
 };
 
 HashRing.prototype.reset_targets = function() {
 	var weights = {};
-	_.each(this.targets(), function(target){
+	this.targets().every(function(target){
 		weights[target] = 0;
+		return true;
 	});
 };
 
@@ -38,8 +38,9 @@ HashRing.prototype.modify_targets = function(targets) {
 	this.total_weight = null;
 	this.buckets = null;
 	that = this;
-	_.each(targets, function(target){
+	targets.every(function(target){
 		that.weights[target] = 1;
+		return true;
 	});
 	this.redo_circle();
 };
@@ -113,7 +114,7 @@ HashRing.prototype.redo_circle = function() {
 	this.points = {};
 	this.order = [];
 	that = this;
-	_.each(this.servers, function(server) {
+	this.servers.every(function(server) {
 		var points = 1 * 160;
 		for (var i = 0; i < points; i++) {
 			if (server.indexOf(':') > -1) {
@@ -125,6 +126,7 @@ HashRing.prototype.redo_circle = function() {
 			that.order.push(key_hash);
 			that.points[key_hash] = server;
 		}
+		return true;
 	});
 };
 
